@@ -3,12 +3,11 @@ import java.util.*;
 
 public class programm{ 
     
-  public static void main(String[] args) { 
-    String nameSearch;
+  public static void main(String[] args) {
     Map<String, Set<String>> PhoneBook = new HashMap<>();
       
       try (BufferedReader reader = new BufferedReader(new FileReader("contacts.csv"))) {
-            String line;
+            String line = new String("UTF-8");
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(";");
                 String name = parts[0].trim();
@@ -36,20 +35,23 @@ public class programm{
 
         System.out.println("Введи '1' чтобы начать");
         Scanner scan = new Scanner(System.in);
-        int k = scan.nextInt();
-        while (k != 0){
+        String k = new String("UTF-8");
+        k = scan.nextLine();
+        while (!(k.equals("0"))){
             System.out.println("Введите '0' чтобы закончить; \n '2' для вывода книги;\n '3' чтобы найти контакт по имени");
-            k = scan.nextInt();
-            if (k == 2){
+            k = scan.nextLine();;
+            if (k.equals("2")){
                 System.out.println("Телефонная книга:");
                 for (Map.Entry<String, Set<String>> contact : sortedContacts) {
                 System.out.println(contact.getKey() + ": " + contact.getValue());
             }}
-            else if (k == 3){
+            else if (k.equals("3")){
                 System.out.println("Введите имя: ");
-                Scanner sc = new Scanner(System.in);
-                nameSearch = sc.nextLine();
-                System.out.println(PhoneBook.get("Мельников Михаил"));
+                //BufferedReader rea = new BufferedReader(new InputStreamReader(System.in));
+                String nameSearch = new String("UTF-8");
+                nameSearch = scan.nextLine();
+                //System.out.println(nameSearch);
+                //System.out.println(PhoneBook.get("Мельников Михаил"));
                 System.out.println(PhoneBook.get(nameSearch));
             } 
                    
